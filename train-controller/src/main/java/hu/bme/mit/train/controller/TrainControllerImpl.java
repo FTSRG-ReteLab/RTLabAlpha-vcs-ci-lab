@@ -30,8 +30,8 @@ public class TrainControllerImpl implements TrainController {
 	}
 
 	@Override
-	public void setSpeedLimit(int speedLimit, boolean isLower) {
-		if(isLower)
+	public void setSpeedLimit(int speedLimit, int isLower) {
+		if(isLower == 0)
 			this.lowerSpeedLimit = speedLimit;
 		else
 			this.upperSpeedLimit = speedLimit;
