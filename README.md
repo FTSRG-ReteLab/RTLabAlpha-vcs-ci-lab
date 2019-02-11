@@ -49,7 +49,7 @@ The figure below illustrates this behavior using an example.
 
 ## About
 
-This project is made by the **ReteLabAlpha team** for *Systems Engineering Laboratory* course.
+This project is made by the **RTLabAlpha team** for *Systems Engineering Laboratory* course.
 
 Developers:
 * Jurin Maxim
