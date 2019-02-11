@@ -5,9 +5,8 @@ import hu.bme.mit.train.interfaces.TrainController;
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
-	private int referenceSpeed = 0;
-	private int lowerSpeedLimit = 0;
-	private int upperSpeedLimit = 0;
+	private int referenceSpeed = 0;;
+	private int speedLimit = 0;
 
 	@Override
 	public void followSpeed() {
@@ -30,22 +29,19 @@ public class TrainControllerImpl implements TrainController {
 	}
 
 	@Override
-	public void setSpeedLimit(int speedLimit, boolean isLower) {
-		if(isLower)
-			this.lowerSpeedLimit = speedLimit;
-		else
-			this.upperSpeedLimit = speedLimit;
+	public void setSpeedLimit(int speedLimit) {
+			this.speedLimit = speedLimit;
+
 		enforceSpeedLimit();
 		
 	}
 
 	private void enforceSpeedLimit() {
-		if (referenceSpeed > upperSpeedLimit) {
-			referenceSpeed = upperSpeedLimit;
+		if (referenceSpeed > speedLimit) {
+			referenceSpeed = speedLimit;
 		}
-		if (referenceSpeed < lowerSpeedLimit) {
-			referenceSpeed = lowerSpeedLimit;
-		}
+		if (referenceSpeed < 0) referenceSpeed = 0;
+
 	}
 
 	@Override
