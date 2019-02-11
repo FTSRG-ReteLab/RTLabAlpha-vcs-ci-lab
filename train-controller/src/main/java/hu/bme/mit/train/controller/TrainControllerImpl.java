@@ -6,7 +6,8 @@ public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
 	private int referenceSpeed = 0;
-	private int speedLimit = 0;
+	private int lowerSpeedLimit = 0;
+	private int upperSpeedLimit = 0;
 
 	@Override
 	public void followSpeed() {
@@ -29,15 +30,21 @@ public class TrainControllerImpl implements TrainController {
 	}
 
 	@Override
-	public void setSpeedLimit(int speedLimit) {
-		this.speedLimit = speedLimit;
+	public void setSpeedLimit(int speedLimit, boolean isLower) {
+		if(isLower)
+			this.lowerSpeedLimit = speedLimit;
+		else
+			this.upperSpeedLimit = speedLimit;
 		enforceSpeedLimit();
 		
 	}
 
 	private void enforceSpeedLimit() {
-		if (referenceSpeed > speedLimit) {
-			referenceSpeed = speedLimit;
+		if (referenceSpeed > upperSpeedLimit) {
+			referenceSpeed = upperSpeedLimit;
+		}
+		if (referenceSpeed < lowerSpeedLimit) {
+			referenceSpeed = lowerSpeedLimit;
 		}
 	}
 
