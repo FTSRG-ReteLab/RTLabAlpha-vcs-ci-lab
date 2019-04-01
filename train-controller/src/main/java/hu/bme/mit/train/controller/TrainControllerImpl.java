@@ -31,14 +31,14 @@ public class TrainControllerImpl implements TrainController {
 	@Override
 	public void setSpeedLimit(int speedLimit) {
 		this.speedLimit = speedLimit;
-		enforceSpeedLimit();	
+		enforceSpeedLimit();
+
 	}
 
 	private void enforceSpeedLimit() {
 		if (referenceSpeed > speedLimit) {
 			referenceSpeed = speedLimit;
 		}
-		if (referenceSpeed < 0) referenceSpeed = 0;
 	}
 
 	@Override
