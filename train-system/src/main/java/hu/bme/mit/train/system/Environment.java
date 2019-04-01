@@ -15,9 +15,16 @@ public class Environment extends JFrame{
         Environment env = new Environment();
         Timer time = new Timer(1000, env::stepTime);
 
+        //Set frame layout
+        env.setLayout(new BoxLayout(env.getContentPane(),BoxLayout.PAGE_AXIS));
+
         //User thread
         JSlider joystick = new JSlider(-10,10,0);
+        joystick.setPaintLabels(true);
         env.add(joystick);
+
+        JSlider limitslider = new JSlider(0,100,0);
+        env.add(limitslider);
 
         //Train system thread
         new Thread(() -> {
@@ -26,6 +33,7 @@ public class Environment extends JFrame{
                     time.start();
 
                 env.setJoystick(joystick.getValue());
+                env.setLimit(limitslider.getValue());
             }
         }).start();
 
@@ -37,18 +45,19 @@ public class Environment extends JFrame{
 
     }
 
-    Environment(){
-        trainSystem.getController().setSpeedLimit(20);
+    private void setLimit(int value) {
+        trainSystem.getController().setSpeedLimit(value);
     }
 
-    public void stepTime(ActionEvent e){
+
+    private void stepTime(ActionEvent e){
         System.out.println("--------------TIME STEP--------------");
         trainSystem.getController().followSpeed();
         System.out.println("Joystick position is: " + trainSystem.getUser().getJoystickPosition());
         System.out.println("Reference Speed is: " + trainSystem.getController().getReferenceSpeed());
     }
 
-    public void setJoystick(int pos){
+    private void setJoystick(int pos){
         trainSystem.getUser().overrideJoystickPosition(pos);
     }
 
