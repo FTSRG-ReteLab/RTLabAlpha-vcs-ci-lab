@@ -1,7 +1,5 @@
 package hu.bme.mit.train.system;
 
-import hu.bme.mit.train.interfaces.TrainController;
-
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,3 +25,4 @@ public class SpeedTimer {
         }, 0,1000);
     }
 }
+
