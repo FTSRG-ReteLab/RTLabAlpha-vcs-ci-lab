@@ -13,7 +13,7 @@ public class SpeedTimer {
     public static void main(String[] args){
         SpeedTimer speedTimer = new SpeedTimer();
         Timer timer = new Timer();
-        speedTimer.system.getController().setSpeedLimit(5);
+        speedTimer.system.getController().setSpeedLimit(30);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
